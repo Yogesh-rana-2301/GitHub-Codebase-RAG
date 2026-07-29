@@ -1,0 +1,33 @@
+# Cloned repos and FAISS index cache — can be gigabytes
+data/*
+!data/.gitkeep
+
+# Auto-generated evaluation output
+results/*
+!results/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Sentence-transformers / HuggingFace model cache
+.cache/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/

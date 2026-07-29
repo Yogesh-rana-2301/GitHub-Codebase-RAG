@@ -1,0 +1,152 @@
+[
+  {
+    "question": "How do I declare a path parameter in FastAPI?",
+    "answer": "Use curly braces in the path string, e.g. @app.get('/items/{item_id}'), and declare the same name as a function parameter.",
+    "source_file": "docs/en/docs/tutorial/path-params.md"
+  },
+  {
+    "question": "How do I define query parameters in FastAPI?",
+    "answer": "Declare function parameters that are not part of the path. FastAPI automatically treats them as query parameters.",
+    "source_file": "docs/en/docs/tutorial/query-params.md"
+  },
+  {
+    "question": "How do I send a request body with POST in FastAPI?",
+    "answer": "Create a Pydantic BaseModel class and declare it as a function parameter. FastAPI reads the request body and validates it.",
+    "source_file": "docs/en/docs/tutorial/body.md"
+  },
+  {
+    "question": "What is the purpose of Pydantic in FastAPI?",
+    "answer": "Pydantic handles data validation and serialization. FastAPI uses it to validate request data and serialize response data.",
+    "source_file": "docs/en/docs/tutorial/body.md"
+  },
+  {
+    "question": "How do I add response validation and documentation in FastAPI?",
+    "answer": "Use the response_model parameter in the path decorator to declare the response schema. FastAPI validates output and generates docs automatically.",
+    "source_file": "docs/en/docs/tutorial/response-model.md"
+  },
+  {
+    "question": "How does FastAPI handle authentication with OAuth2?",
+    "answer": "FastAPI provides OAuth2PasswordBearer and OAuth2PasswordRequestForm utilities. You declare a dependency and FastAPI handles token extraction.",
+    "source_file": "docs/en/docs/tutorial/security/oauth2-jwt.md"
+  },
+  {
+    "question": "How do I use dependency injection in FastAPI?",
+    "answer": "Use the Depends() function to declare dependencies. FastAPI resolves them automatically before calling the path function.",
+    "source_file": "docs/en/docs/tutorial/dependencies/index.md"
+  },
+  {
+    "question": "How do I handle file uploads in FastAPI?",
+    "answer": "Use UploadFile as the parameter type. FastAPI reads the file from the multipart form data and provides it as an async file object.",
+    "source_file": "docs/en/docs/tutorial/request-files.md"
+  },
+  {
+    "question": "What is the difference between async and sync path functions in FastAPI?",
+    "answer": "async def functions run in the event loop without blocking. def functions run in a thread pool executor so they do not block the event loop.",
+    "source_file": "docs/en/docs/async.md"
+  },
+  {
+    "question": "How do I add middleware to a FastAPI application?",
+    "answer": "Use app.add_middleware() or the @app.middleware decorator. Middleware wraps every request and response.",
+    "source_file": "docs/en/docs/tutorial/middleware.md"
+  },
+  {
+    "question": "How do I handle CORS in FastAPI?",
+    "answer": "Add CORSMiddleware with the allowed origins, methods, and headers. Import it from fastapi.middleware.cors.",
+    "source_file": "docs/en/docs/tutorial/cors.md"
+  },
+  {
+    "question": "How do I raise HTTP errors in FastAPI?",
+    "answer": "Use raise HTTPException(status_code=404, detail='Item not found'). FastAPI converts it to a JSON error response.",
+    "source_file": "docs/en/docs/tutorial/handling-errors.md"
+  },
+  {
+    "question": "How do I write tests for a FastAPI application?",
+    "answer": "Use the TestClient from fastapi.testclient. It wraps the app and allows you to make requests in tests without running a server.",
+    "source_file": "docs/en/docs/tutorial/testing.md"
+  },
+  {
+    "question": "How does FastAPI generate OpenAPI documentation automatically?",
+    "answer": "FastAPI introspects path decorators, type annotations, and Pydantic models to generate an OpenAPI schema, served at /openapi.json.",
+    "source_file": "docs/en/docs/tutorial/first-steps.md"
+  },
+  {
+    "question": "How do I add a background task in FastAPI?",
+    "answer": "Declare a BackgroundTasks parameter in the path function and call background_tasks.add_task(func, args). FastAPI runs it after the response is sent.",
+    "source_file": "docs/en/docs/tutorial/background-tasks.md"
+  },
+  {
+    "question": "How do I validate query parameter values with constraints?",
+    "answer": "Use Query() with parameters like min_length, max_length, ge, le, or regex to add validation constraints to query parameters.",
+    "source_file": "docs/en/docs/tutorial/query-params-str-validations.md"
+  },
+  {
+    "question": "How do I group routes using APIRouter?",
+    "answer": "Create an APIRouter instance, add routes to it, then include it in the main app with app.include_router(router, prefix='/prefix').",
+    "source_file": "docs/en/docs/tutorial/bigger-applications.md"
+  },
+  {
+    "question": "How do I use environment variables and settings in FastAPI?",
+    "answer": "Use Pydantic's BaseSettings class. It reads from environment variables automatically and can be injected as a dependency.",
+    "source_file": "docs/en/docs/advanced/settings.md"
+  },
+  {
+    "question": "How does FastAPI handle WebSockets?",
+    "answer": "Use the WebSocket type as a path function parameter. The function uses await websocket.receive_text() and await websocket.send_text().",
+    "source_file": "docs/en/docs/advanced/websockets.md"
+  },
+  {
+    "question": "How do I add startup and shutdown event handlers in FastAPI?",
+    "answer": "Use @app.on_event('startup') and @app.on_event('shutdown') decorators, or use the lifespan context manager in newer versions.",
+    "source_file": "docs/en/docs/advanced/events.md"
+  },
+  {
+    "question": "How does path parameter type conversion work in FastAPI?",
+    "answer": "FastAPI uses the type annotation of the function parameter to convert and validate the path parameter value automatically.",
+    "source_file": "docs/en/docs/tutorial/path-params.md"
+  },
+  {
+    "question": "How do I return a custom response type in FastAPI?",
+    "answer": "Return a Response subclass like JSONResponse, HTMLResponse, FileResponse, or StreamingResponse directly from the path function.",
+    "source_file": "docs/en/docs/advanced/custom-response.md"
+  },
+  {
+    "question": "How do I use cookies in FastAPI?",
+    "answer": "Declare a parameter with Cookie() type to read a cookie. Use response.set_cookie() to write a cookie in the response.",
+    "source_file": "docs/en/docs/tutorial/cookie-params.md"
+  },
+  {
+    "question": "How do I declare optional query parameters?",
+    "answer": "Set the default value to None in the function signature. FastAPI treats parameters with a default as optional.",
+    "source_file": "docs/en/docs/tutorial/query-params.md"
+  },
+  {
+    "question": "What is a lifespan context manager in FastAPI?",
+    "answer": "The lifespan parameter of FastAPI() accepts an async context manager that runs startup code before yield and shutdown code after.",
+    "source_file": "docs/en/docs/advanced/events.md"
+  },
+  {
+    "question": "How do I add request headers as parameters in FastAPI?",
+    "answer": "Declare a function parameter with Header() type. FastAPI reads it from the request headers and converts hyphens to underscores.",
+    "source_file": "docs/en/docs/tutorial/header-params.md"
+  },
+  {
+    "question": "How does FastAPI handle form data?",
+    "answer": "Use Form() for each form field or declare a Pydantic model annotated with Form. Requires python-multipart to be installed.",
+    "source_file": "docs/en/docs/tutorial/request-forms.md"
+  },
+  {
+    "question": "How do I add security scopes in FastAPI?",
+    "answer": "Use SecurityScopes in the dependency and declare scopes in the Security() call. FastAPI enforces that the token has the required scopes.",
+    "source_file": "docs/en/docs/advanced/security/oauth2-scopes.md"
+  },
+  {
+    "question": "How can I mount a sub-application in FastAPI?",
+    "answer": "Use app.mount('/subpath', app=sub_app) to mount any ASGI application including another FastAPI instance at a given path prefix.",
+    "source_file": "docs/en/docs/advanced/sub-applications.md"
+  },
+  {
+    "question": "How does FastAPI support streaming responses?",
+    "answer": "Return a StreamingResponse with a generator function as the content argument. FastAPI sends chunks as they are produced.",
+    "source_file": "docs/en/docs/advanced/custom-response.md"
+  }
+]
