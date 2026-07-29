@@ -8,17 +8,14 @@ quality across three chunking strategies and a cross-encoder re-ranker.
 
 ## Evaluation Results
 
-| Strategy              | Reranker | Hit Rate |
-|-----------------------|----------|----------|
-| fixed_no_overlap      | No       | —        |
-| fixed_with_overlap    | No       | —        |
-| semantic              | No       | —        |
-| fixed_no_overlap      | Yes      | —        |
-| fixed_with_overlap    | Yes      | —        |
-| semantic              | Yes      | —        |
-
-> Run `python main.py --evaluate` to populate this table with real numbers.
-> Expected result: semantic chunking improves hit rate by ~10-15pp over fixed-size.
+| Strategy                  | Reranker   | Hit Rate |
+| ------------------------- | ---------- | -------- |
+| fixed_no_overlap          | False      | 50.0%    |
+| fixed_no_overlap          | True       | 50.0%    |
+| fixed_with_overlap        | False      | 46.7%    |
+| fixed_with_overlap        | True       | 53.3%    |
+| semantic                  | False      | 40.0%    |
+| semantic                  | True       | 50.0%    |
 
 ---
 
