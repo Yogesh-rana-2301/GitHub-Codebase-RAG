@@ -20,7 +20,7 @@ class GeminiLLM:
       a key production concern interviewers care about.
     """
 
-    DEFAULT_MODEL = "gemini-1.5-flash"
+    DEFAULT_MODEL = "gemini-2.0-flash"
 
     def __init__(self, model_name: str = DEFAULT_MODEL, api_key: str = None):
         key = api_key or os.environ.get("GEMINI_API_KEY")
