@@ -1,0 +1,58 @@
+name: Run RAG Evaluation
+
+on:
+  workflow_dispatch:          # manual "Run workflow" button in GitHub UI
+    inputs:
+      repo_url:
+        description: "GitHub repo to index (default: FastAPI)"
+        required: false
+        default: "https://github.com/tiangolo/fastapi"
+      query:
+        description: "Optional single query to test (leave blank to run full eval)"
+        required: false
+        default: ""
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest    # Linux — no Apple Silicon segfault
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run single query (if provided)
+        if: ${{ github.event.inputs.query != '' }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python main.py \
+            --repo "${{ github.event.inputs.repo_url }}" \
+            --query "${{ github.event.inputs.query }}" \
+            --strategy semantic \
+            --reranker
+
+      - name: Run full evaluation (all 6 strategy combinations)
+        if: ${{ github.event.inputs.query == '' }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python main.py \
+            --repo "${{ github.event.inputs.repo_url }}" \
+            --evaluate
+
+      - name: Upload evaluation results
+        if: ${{ github.event.inputs.query == '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: evaluation-results
+          path: results/evaluation_results.json
+          retention-days: 30
