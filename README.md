@@ -6,16 +6,17 @@ quality across three chunking strategies and a cross-encoder re-ranker.
 
 ---
 
-## Evaluation Results
+## The 6 Evaluation Combinations & Results
 
-| Strategy                  | Reranker   | Hit Rate |
-| ------------------------- | ---------- | -------- |
-| fixed_no_overlap          | False      | 50.0%    |
-| fixed_no_overlap          | True       | 50.0%    |
-| fixed_with_overlap        | False      | 46.7%    |
-| fixed_with_overlap        | True       | 53.3%    |
-| semantic                  | False      | 40.0%    |
-| semantic                  | True       | 50.0%    |
+| Strategy | Reranker | Hit Rate | Notes |
+|----------|----------|----------|-------|
+| fixed_no_overlap | False | 50.0% | Baseline |
+| fixed_no_overlap | True | 50.0% | Reranker no help here |
+| fixed_with_overlap | False | 46.7% | Overlap slightly hurts without reranker |
+| **fixed_with_overlap** | **True** | **53.3%** | **Best overall** |
+| semantic | False | 40.0% | Fewest chunks = less recall |
+| semantic | True | 50.0% | Reranker recovers quality |
+
 
 ---
 
